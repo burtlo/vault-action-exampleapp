@@ -17,5 +17,5 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
             secret/data/ci npm_token
-      - name: Echo Secrets
-        run: echo $NPM_TOKEN
+      - name: Build Application Container
+        run: docker build --build-arg app_secret=${NPM_TOKEN} . -t exampleapp-ruby
