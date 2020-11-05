@@ -13,8 +13,8 @@ jobs:
         uses: hashicorp/vault-action@v2.0.1
         with:
           url: http://0.0.0.0:8200
-          token: ${{ secrets.VaultToken }}
-          caCertificate: ${{ secrets.VAULTCA }}
+          tlsSkipVerify: true
+          token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
             secret/data/ci npm_token
       - name: Echo Secrets
