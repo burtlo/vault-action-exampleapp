@@ -6,20 +6,16 @@ on: push
 jobs:
   # Set the job key. The key is displayed as the job name
   # when a job name is not provided
-  super-lint:
-    # Name the Job
-    name: Lint code base
-    # Set the type of machine to run on
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: self-hosted
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Runs the Super-Linter action
-      - name: Run Super-Linter
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2.0.1
+        with:
+          url: http://0.0.0.0:8200
+          token: ${{ secrets.VaultToken }}
+          caCertificate: ${{ secrets.VAULTCA }}
+          secrets: |
+            secret/data/ci npm_token
+      - name: Echo Secrets
+        run: echo ${{ steps.secrets.outputs.npm_token }}
