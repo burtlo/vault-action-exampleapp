@@ -1,0 +1,1 @@
+# Uses the GitHub Action for Vault Secrets
