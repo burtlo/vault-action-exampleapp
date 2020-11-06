@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v2
       - name: Import Secrets
         uses: hashicorp/vault-action@v2.0.1
         with:
