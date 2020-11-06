@@ -18,4 +18,4 @@ jobs:
           secrets: |
             secret/data/ci npm_token
       - name: Build Application Container
-        run: docker build . --file Dockerfile --build-arg app_secret=${NPM_TOKEN} -t exampleapp-ruby
+        run: docker build . --file Dockerfile --build-arg app_secret=${{ steps.secrets.outputs.npm_token }} -t exampleapp-ruby
