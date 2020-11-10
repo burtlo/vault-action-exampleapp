@@ -16,6 +16,6 @@ jobs:
           tlsSkipVerify: true
           token: ${{ secrets.VAULT_TOKEN }}
           secrets: |
-            secret/data/ci webapp_secret
+            secret/data/ci app_secret
       - name: Build Application Container
-        run: docker build . --file Dockerfile --build-arg app_secret="${{ env.WEBAPP_SECRET }}" -t exampleapp-ruby
+        run: docker build . --file Dockerfile --build-arg app_secret="${{ env.APP_SECRET }}" -t exampleapp-ruby
