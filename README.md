@@ -1,6 +1,6 @@
 # Exampleapp in Ruby
 
-Now with GitHub action builder
+Now with GitHub action builder.
 
 ## Local Development
 
